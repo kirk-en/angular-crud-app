@@ -1,3 +1,7 @@
 @for (task of tasks; track task.id) {
-<app-task-item [task]="task"></app-task-item>
+<app-task-item
+  [task]="task"
+  (onDeleteTask)="deleteTask(task)"
+  (onToggleTask)="toggleReminder(task)"
+></app-task-item>
 }
