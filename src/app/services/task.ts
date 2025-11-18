@@ -18,16 +18,13 @@ export class TaskService {
   getTasks(): Observable<Task[]> {
     return this.http.get<Task[]>(this.apiURL);
   }
-  addTask() {
-    return this.http.post(this.apiURL, {
-      id: 3,
-      text: 'New task',
-      day: 'May 49th at 12:30pm',
-      reminder: false,
-    });
+  addTask(task: Task): Observable<Task> {
+    return this.http.post<Task>(this.apiURL, task, httpOptions);
   }
 
   deleteTask(task: Task): Observable<Task> {
+    console.log('Deleting task:', task); // Check the ID value
+
     const url = `${this.apiURL}/${task.id}`;
     return this.http.delete<Task>(url);
   }
